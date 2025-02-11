@@ -18,11 +18,11 @@ const auth = (req, res, next) => {
         //another way: 
         //const user = User.findById(payload.id).select('-password')
         //req.user = user
-        
+
     } catch (error) {
         throw new UnauthenticatedError('Authentication invalid')
-
     }
+    next();
 }
 
-module.exports = auth 
+module.exports = auth;
