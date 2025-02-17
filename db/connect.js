@@ -3,9 +3,13 @@ const mongoose = require('mongoose')
 const connectDB = (url) => {
   return mongoose.connect(url, {
     useNewUrlParser: true,
-    useCreateIndex: true,
-    useFindAndModify: false,
     useUnifiedTopology: true,
+    
+    //error handler for connect
+  }).then (() => {
+    console.log("MongoDB connect successfully");
+  }).catch ((error) => {
+    console.log("MongoDB connect error", error);
   })
 }
 
