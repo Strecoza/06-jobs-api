@@ -28,12 +28,20 @@ app.use(rateLimiter({
 }));
 app.use(express.json());
 app.use(helmet());
-app.use(cors());
+app.use(cors({
+  origin: [""],
+  methods: "GET, POST, PATCH, DELETE",
+  credentials: true,
+}
+));
 app.use(xss());
 
+/*
 app.get('/', (req, res) => {
   res.send( 'jobs api')
 })
+*/
+app.use(express.static("public"))
 
 // routes
 app.use('/api/v1/auth', authRouter);
