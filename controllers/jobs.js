@@ -52,16 +52,16 @@ const getAllJobs = async (req, res) => {
    const {
       user:{userId}, 
       params:{id:jobId},
-   } = req 
+   } = req; 
 
    const job = await Job.findByIdAndRemove({
       _id:jobId,
-      createdBy: userId
+      createdBy: userId,
    })
    if(!job){
       throw new NotFoundError(`No job with id  ${jobId} `)
    }
-   res.status(StatusCodes.OK).send()
+   res.status(StatusCodes.OK).json({ msg: "The entry was deleted." });
  }
 
  module.exports = {
